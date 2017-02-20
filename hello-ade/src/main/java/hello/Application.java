@@ -30,8 +30,7 @@ public class Application {
 			@Override
 			public void run(String... args) throws Exception {
 
-				// this demonstrates using the Spring Cloud Commons DiscoveryClient
-				// abstraction
+				// print out service instances
 				System.out.println("=====================================");
 				for (String svc : discoveryClient.getServices()) {
 					System.out.println("service = " + svc);
