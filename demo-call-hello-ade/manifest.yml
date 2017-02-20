@@ -1,0 +1,6 @@
+applications:
+- name: demo-call-hello-ade
+  memory: 512M
+  buildpack: java_buildpack
+  domain: cfapps.io
+  

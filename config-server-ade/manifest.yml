@@ -1,0 +1,5 @@
+applications:
+- name: config-server-ade
+  memory: 512M
+  buildpack: java_buildpack
+  domain: cfapps.io

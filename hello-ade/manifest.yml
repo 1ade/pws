@@ -1,0 +1,5 @@
+applications:
+- name: hello-ade
+  memory: 256M
+  buildpack: java_buildpack
+  domain: cfapps.io
