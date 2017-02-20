@@ -5,10 +5,7 @@ package hello;
 
 import java.beans.Transient;
 
-/**
- * @author lizie
- *
- */
+
 public class Greeting {
 	public String name;
 	public String salutation;
