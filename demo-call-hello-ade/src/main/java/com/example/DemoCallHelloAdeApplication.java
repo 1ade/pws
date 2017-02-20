@@ -33,7 +33,7 @@ public class DemoCallHelloAdeApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DemoCallHelloAdeApplication.class, args);
 	}
-	
+	//fetching value from config server via service registry
 	@Value("${hello.service}")
 	private String serviceName;
 
@@ -44,8 +44,7 @@ public class DemoCallHelloAdeApplication {
 				@Override
 				public void run(String... args) throws Exception {
 
-					// this demonstrates using the Spring Cloud Commons DiscoveryClient
-					// abstraction
+					// print out sevice instances
 					System.out.println("=====================================");
 					System.out.println("serviceName: "+serviceName);
 					for (String svc : discoveryClient.getServices()) {
@@ -82,15 +81,9 @@ public class DemoCallHelloAdeApplication {
 	public String hello(@RequestParam(value = "salutation", defaultValue = "Hello") String salutation,
 			@RequestParam(value = "name", defaultValue = "Bob") String name) throws JsonParseException, JsonMappingException, IOException {		
 
-		//Greeting greeting = rest.getForObject("http://hello-ade/greeting?salutation="+salutation+"&name="+name, Greeting.class);
 		ResponseEntity<String> resp = rest.getForEntity("//"+serviceName+"/greeting?salutation="+salutation+"&name="+name, String.class);
 		ObjectMapper om = new ObjectMapper();
-		System.out.println("============================================");
-		System.out.println("body : "+resp.getBody());
-		Greeting greeting = om.readValue(resp.getBody(), Greeting.class);
-		System.out.println("message : "+greeting.getMessage());
-		System.out.println("============================================");
-		
+		Greeting greeting = om.readValue(resp.getBody(), Greeting.class);		
 		return greeting.getMessage();
 	}
 
