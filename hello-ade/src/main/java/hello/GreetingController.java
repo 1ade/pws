@@ -8,9 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class GreetingController {
-	/*@Autowired	
-	private CloudFoundryDiscoveryClient  discoveryClient;*/
-
+	
     @RequestMapping("/greeting")
     @ResponseBody
     public Greeting greeting(@RequestParam(value="name", required=false, defaultValue="World") String name, @RequestParam(value="salutation", required=false, defaultValue="Hello") String salutation, Model model) {
